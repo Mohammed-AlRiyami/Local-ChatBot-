@@ -25,7 +25,7 @@ def handle_conversation():
     print("Welcome to Mo AI Chatbot! Type 'exit' to quit.")
     while True:
         try:
-            user_input = input(f"{user_name}: ")
+            user_input = input("You: ")
             
             if user_input.lower() == "exit":
                 print("Goodbye! Have a great day.")
@@ -43,7 +43,7 @@ def handle_conversation():
             # Passing context and question to the model
             result = chain.invoke({
                 "context": context, 
-                "question": f"{user_name}: {user_input} (Respond in a {tone} tone.)"
+                "question": f" {user_input} (Respond in a {tone} tone.)"
             })
 
             # Filter out irrelevant or repetitive answers
@@ -53,7 +53,7 @@ def handle_conversation():
                 print(f"Bot: {result}")
 
             # Updating context for memory
-            context += f"\n{user_name}: {user_input}\nAI: {result}"
+            context += f"\n{user_input}\nAI: {result}"
 
         except Exception as e:
             print(f"Bot: Oops, something went wrong! Error: {str(e)}")
